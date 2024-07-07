@@ -22,7 +22,7 @@ export class Service{
                 title, content, featuredImage, status, userId
             })
         } catch (error) {
-            throw error ;
+            console.log("Appwrite service:: createPost:: error ", error);
         }
     }
 
@@ -32,16 +32,16 @@ export class Service{
                 title, content, featuredImage, status
             })
         } catch (error) {
-            throw error ;
+            console.log("Appwrite service:: updatePost:: error ", error);
         }
     }
 
     async deletePost(slug){
         try {
-            return await this.databases.deleteDocument(config.appwriteDatabaseId, config.appwriteCollectionId, slug) ;
+            await this.databases.deleteDocument(config.appwriteDatabaseId, config.appwriteCollectionId, slug) ;
             return true ;
         } catch (error) {
-            throw error ;
+            console.log("Appwrite service:: deletePost:: error ", error);
             return false ;
         }
     }
@@ -50,7 +50,7 @@ export class Service{
         try {
             return await this.databases.getDocument(config.appwriteDatabaseId, config.appwriteCollectionId, slug) ;
         } catch (error) {
-            throw error ;
+            console.log("Appwrite service:: getPost:: error ", error);
             return false ;
         }
     }
@@ -59,7 +59,7 @@ export class Service{
         try {
             return await this.databases.listDocuments(config.appwriteDatabaseId, config.appwriteCollectionId, queries)
         } catch (error) {
-            throw error ;
+            console.log("Appwrite service:: getPosts:: error ", error);
             return false ;
         }
     }
@@ -68,7 +68,7 @@ export class Service{
         try {
             return await this.bucket.createFile(config.appwriteBucketId, ID.unique(), file) ;
         } catch (error) {
-            throw error ;
+            console.log("Appwrite service:: uploadFile:: error ", error);
             return false ;
         }
     }
@@ -78,7 +78,7 @@ export class Service{
             await this.bucket.deleteFile(config.appwriteBucketId, fileId) ;
             return true ;
         } catch (error) {
-            throw error ;
+            console.log("Appwrite service:: deleteFile:: error ", error);
             return false ;
         }
     }
